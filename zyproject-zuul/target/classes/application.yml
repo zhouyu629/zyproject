@@ -1,0 +1,16 @@
+server:
+  port: 81
+spring:
+  application:
+    name: zyproject-zuul
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8001/eureka/
+
+#zuul 网关定义
+zuul:
+  routes:
+    api-a:
+      path: /apix/**
+      serviceId: ZYPROJECT-API-SERVICE

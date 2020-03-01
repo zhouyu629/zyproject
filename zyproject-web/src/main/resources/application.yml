@@ -1,0 +1,48 @@
+spring:
+  messages:
+    basename: i18n/messages_zh_CN
+    encoding: UTF-8
+  application:
+    name: zyproject-web
+  redis:
+    database: 0
+    host: 192.168.0.7
+    port: 6379
+    password: 123456
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: -1ms
+        min-idle: 0
+  freemarker:
+    allow-request-override: true
+    cache: false
+    check-template-location: true
+    charset: UTF-8
+    content-type: text/html; charset=utf-8
+    expose-request-attributes: false
+    expose-session-attributes: false
+    expose-spring-macro-helpers: false
+    suffix: .ftl
+    template-loader-path: classpath:/templates
+    settings:
+      number_format: 0 # freemarker会自动将整型数字转换为千位分隔，不方便
+  http:
+    encoding:
+      charset: utf-8
+      force: true
+  cloud:
+    consul:
+      host: 192.168.0.7
+      discovery:
+        hostname: 192.168.0.6
+      port: 8500
+server:
+  port: 8080
+security:
+  oauth2:
+    sso:
+      login-path: /manage/login
+
+# 附件上传路径
+filePath: D:\\tomcat\\webapps\\zyproject
