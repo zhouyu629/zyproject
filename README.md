@@ -69,3 +69,11 @@ IDE：Intellj IDEA
 　　还没研究
   
  具体编码过程参考：http://blog.pianhuangw.com
+ 
+[登录页](/otherfiles/images/login.png)
+[系统首页](/otherfiles/images/index.png)
+[角色](/otherfiles/images/role.png)
+[角色权限](/otherfiles/images/rolepermission.png)
+[用户](/otherfiles/images/user.png)
+[新增用户](/otherfiles/images/adduser.png)
+ 
