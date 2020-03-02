@@ -22,7 +22,7 @@ IDE：Intellj IDEA
 
 可选择的有：eureka、consul、Nacos、zookeeper、Redis等。本项目选择consul。
 
-思考：eureka目前已闭源，理论上不会有太大影响。研究完consul以后发现ACL配置、服务健康检测貌似更完善点。且更换配置中心，看起来也不是太麻烦：1）更改pom引用。2）更改yml（或properties配置）3）更改springboot启动入口注解@Enablexxxxx。没有选择SpringCloudAlibaba也就没有仔细研究Doub+zookeeper这一套框架了。
+思考：eureka目前已闭源，理论上不会有太大影响。研究完consul以后发现ACL配置、服务健康检测貌似更完善点。且更换配置中心，看起来也不是太麻烦：1）更改pom引用。2）更改yml（或properties配置）3）更改springboot启动入口注解@Enablexxxxx。没有选择SpringCloudAlibaba也就没有仔细研究Dobbo+zookeeper这一套框架了。
 
 参考文章：consul集群搭建以及ACL配置
 
