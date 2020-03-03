@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * @program: zyproject
- * @description: 实现SpringSercrity UserDetails
+ * @description: 实现SpringSercurity UserDetails
  * @author: zhouyu(zhouyu629 # qq.com)
  * @create: 2020-02-12
  **/

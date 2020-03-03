@@ -14,7 +14,7 @@ import java.io.IOException;
 /**
  * @program: zyproject
  * @description: 自定义登录失败处理
- * @author: zhouyu(zhouyu629 @ qq.com)
+ * @author: zhouyu(zhouyu629 # qq.com)
  * @create: 2020-02-12
  **/
 @Component("myAuthenctiationFailureHandler")

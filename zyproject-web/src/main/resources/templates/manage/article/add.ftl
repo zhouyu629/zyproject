@@ -17,7 +17,6 @@
 </head>
 
 <body>
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-12 col-lg-12 main">
@@ -41,7 +40,7 @@
                             <label class="control-label col-sm-3" for="user_id">文章标题</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name="article_title" id="article_title" placeholder="请输入文章标题" value="${article.article_title}" />
-                                <input type="hidden" name="article_id" id="article_id" value="${article.article_id}" />
+                                <input type="hidden" name="article_id" id="article_id" value="${article.article_id!''}" />
                             </div>
                         </div>
                         <div class="from-group row top-m-5">
@@ -98,8 +97,8 @@
 <script type="text/javascript">
     $(function () {
         //如果是编辑，默认选中select
-        if('${article.article_id}'!=''){
-            $("#article_kind_id").val([${article.article_kind_id}]);
+        if('${article.article_id!''}'!=''){
+            $("#article_kind_id").val([${article.article_kind_id!''}]);
             $("#article_kind_id").selectpicker('refresh');
         }
         //ueditor初始化

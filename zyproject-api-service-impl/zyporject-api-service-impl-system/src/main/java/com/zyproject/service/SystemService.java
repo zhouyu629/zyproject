@@ -377,6 +377,6 @@ public class SystemService implements ISystemService {
     @ApiImplicitParam(name = "article_id",value = "文章id",dataType = "int",required = true)
     @Override
     public ResponseData delArticle(Integer article_id) {
-        return null;
+        return ResponseData.out(this.articleDao.delArticle(article_id)?CodeEnum.SUCCESS:CodeEnum.FAIL,null);
     }
 }

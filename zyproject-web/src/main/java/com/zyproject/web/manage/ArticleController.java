@@ -84,6 +84,11 @@ public class ArticleController extends BaseController {
         ArticleEntity articleEntity = new ArticleEntity();
         if(null!=article_id){
             articleEntity = (ArticleEntity) this.articleService.getArticleById(article_id).getData(ArticleEntity.class);
+        }else{
+            articleEntity.setArticle_content("");
+            articleEntity.setArticle_title("");
+            articleEntity.setArticle_id(null);
+            articleEntity.setArticle_kind_id(null);
         }
         map.put("article",articleEntity);
         return "/manage/article/add";
@@ -94,5 +99,12 @@ public class ArticleController extends BaseController {
     @ResponseBody
     public ResponseData addOrSubmitArticle(ArticleEntity articleEntity){
         return this.articleService.addOrUpdateArticle(articleEntity);
+    }
+
+    //删除文章
+    @RequestMapping("/del_article")
+    @ResponseBody
+    public ResponseData delArticle(Integer article_id){
+        return this.articleService.delArticle(article_id);
     }
 }

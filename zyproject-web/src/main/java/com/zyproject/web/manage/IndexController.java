@@ -38,6 +38,7 @@ public class IndexController {
     public String index(HttpServletRequest request,Map<Object,Object> map){
         MyUserDetails userDetails = (MyUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         map.put("username",userDetails.getRealName());
+        map.put("user",userDetails.getUserEntity());
 
         //权限
         ResponseData data = treeService.getTreeWithUserRight(userDetails.getUserEntity().getUser_id());

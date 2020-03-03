@@ -43,4 +43,9 @@ public class LoginController {
         }
         return data;
     }
+
+    //用户注销
+    public String logout(){
+        return "";
+    }
 }

@@ -14,7 +14,7 @@ import java.io.IOException;
 /**
  * @program: zyproject
  * @description: SpringSecurity登录成功句柄
- * @author: zhouyu(zhouyu629 @ qq.com)
+ * @author: zhouyu(zhouyu629 # qq.com)
  * @create: 2020-02-13
  **/
 @Component("MyAuthenctiationSucessHandler")

@@ -54,6 +54,8 @@ public class BaseController {
                 map.put("tree_id",tree_id);
             }
         }
+        //把用户信息也塞到前台
+        map.put("user",this.getCurrentUser());
     }
 
     protected int getTreeid(){

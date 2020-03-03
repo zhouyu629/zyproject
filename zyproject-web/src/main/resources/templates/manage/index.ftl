@@ -82,93 +82,25 @@
                 <h4>个人资料</h4>
             </div>
             <div class="modal-body">
-                <form role="form-inline" id="user_basic_form" enctype="multipart/form-data" method="post">
+                <form role="form-inline" id="user_basic_form" method="post">
                     <div class="tab-pane fade in active" id="basic">
                         <table class="table table-bordered table-hover">
                             <tr>
                                 <th>登录名<span class="redtxt">*</span></th>
                                 <td>
-                                    <input type="text" class="form-control" name="user_code" id="user_code" placeholder="登录名" readonly="true"/>
-                                    <input type="hidden" name="user_id" id="user_id" />
-                                </td>
-                                <th>姓名</th>
-                                <td>
-                                    <input type="text" class="form-control" name="user_name" id="user_name" placeholder="姓名" />
-                                </td>
-                                <th>性别</th>
-                                <td>
-                                    <select name="user_sex" id="user_sex" class="form-control">
-                                        <option value="男">男</option>
-                                        <option value="女">女</option>
-                                    </select>
+                                    <input type="text" value="${user.login_code}" class="form-control" name="login_code" id="login_code" placeholder="登录名" readonly="true"/>
+                                    <input type="hidden" name="user_id" id="user_id" value="${user.user_id}" />
                                 </td>
                             </tr>
                             <tr>
-                                <th>手机</th>
+                                <th>姓名<span class="redtxt">*</span> </th>
                                 <td>
-                                    <input type="text" class="form-control" name="user_phone" id="user_phone" placeholder="手机号码" />
-                                </td>
-                                <!-- 		                     <th>密码</th>
-                                                             <td>
-                                                                <input type="password" class="form-control" name="user_password" id="user_password" placeholder="请输入密码" />
-                                                             </td> -->
-                                <th>角色</th>
-                                <td>
-                                    <select name="user_role" id="user_role" class="form-control" disabled="disabled">
-                                        <option value="">请选择</option>
-                                        <volist name="role_list" id="t">
-                                            <option value="{$t.role_id}">{$t.role_name}</option>
-                                        </volist>
-                                    </select>
-                                </td>
-                                <th>出生日期</th>
-                                <td>
-                                    <input type="text" class="form-control" name="user_birthday" id="user_birthday" placeholder="出生日期" />
+                                    <input type="text" value="${user.user_name}" class="form-control" name="user_name" id="user_name" placeholder="姓名" />
                                 </td>
                             </tr>
                             <tr>
-                                <th>电子邮箱</th>
-                                <td>
-                                    <input type="text" class="form-control" name="user_email" id="user_email" placeholder="电子邮箱" />
-                                </td>
-                                <th>QQ</th>
-                                <td>
-                                    <input type="text" class="form-control" name="user_qq" id="user_qq" placeholder="请输入QQ号" />
-                                </td>
-                                <th>身份证号</th>
-                                <td>
-                                    <input type="text" class="form-control" name="user_card" id="user_card" placeholder="请输入身份证号码" />
-                                </td>
-                            </tr>
-                            <tr>
-
-                                <th>学历</th>
-                                <td>
-                                    <select name="user_degree" id="user_degree" class="form-control">
-                                        <option value="博士">博士</option>
-                                        <option value="硕士">硕士</option>
-                                        <option value="本科">本科</option>
-                                        <option value="大专">大专</option>
-                                        <option value="高中">高中</option>
-                                        <option value="初中">初中</option>
-                                        <option value="小学">小学</option>
-                                    </select>
-                                </td>
-
-                                <th>所属地区<span class="redtxt">*</span></th>
-                                <td colspan=3>
-                                    <select name="area_id" id="area_id" class="form-control" disabled="disabled">
-                                        <volist name="select_area_tree" id="t">
-                                            <option value="{$t.area_id}">{$t.area_name}</option>
-                                        </volist>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>通讯地址</th>
-                                <td colspan=5>
-                                    <input type="text" class="form-control" name="user_address" id="user_address" placeholder="请输入通讯地址" />
-                                </td>
+                                <th>手机号码</th>
+                                <td><input type="text" name="mobile" id="mobile" class="form-control" value="${user.mobile!''}" placeholder="请输入11位手机号码"></td>
                             </tr>
                         </table>
                     </div>
@@ -203,7 +135,7 @@
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="javascript:userResource()"><span class="glyphicon glyphicon-user"></span> 个人资料</a></li>
                         <li><a href="javascript:resetPassword()"><span class="glyphicon glyphicon-cog"></span> 密码修改</a></li>
-                        <li><a href="__APP__/Home/Login/logout"><span class="glyphicon glyphicon-log-out"></span> 退出登录</a></li>
+                        <li><a href="/manage/logout"><span class="glyphicon glyphicon-log-out"></span> 退出登录</a></li>
                     </ul>
                 </li>
             </ul>
@@ -242,8 +174,51 @@
 
 <script src="/manage/js/jquery-1.11.1.min.js"></script>
 <script src="/manage/js/bootstrap.min.js"></script>
-<script src="/manage/js/bootstrap-datepicker.js"></script>
-<script>
+<script type="text/javascript" src="/manage/js/jquery.validate/core.js"></script>
+<script type="text/javascript">
+    $("#user_basic_form").validate({
+        submitHandler: function(form){
+            //向服务器提交表单
+            $.ajax({
+                url:"/manage/user/user-submit",
+                type:"POST",
+                dataType:"json",
+                data:$("#user_basic_form").serialize(),
+                success:function(res){
+                    if(res.code == 1000){
+                        alert("操作成功");
+                        window.location.reload();
+                    }else{
+                        alert(res.msg+"/"+res.data);
+                    }
+                }
+            });
+        },
+        focusInvalid : true,
+        rules:{
+            user_name: {required:true},
+        },
+        messages:{
+            user_name: {required: "文章标题不能为空！"}
+        },
+        errorElement: "em",
+        errorPlacement: function ( error, element ) {
+            // Add the `help-block` class to the error element
+            error.addClass( "help-block" );
+            if ( element.prop( "type" ) === "checkbox" ) {
+                error.insertAfter( element.parent( "label" ) );
+            } else {
+                error.insertAfter( element );
+            }
+        },
+        highlight: function ( element, errorClass, validClass ) {
+            $( element ).parents( ".col-sm-9" ).addClass( "has-error" ).removeClass( "has-success" );
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $( element ).parents( ".col-sm-9" ).addClass( "has-success" ).removeClass( "has-error" );
+        }
+    });
+
     !function ($) {
         $(document).on("click","ul.nav li.parent > a > span.icon", function(){
             $(this).find('em:first').toggleClass("glyphicon-minus");
@@ -321,58 +296,15 @@
     }
 
     function userResource(){
-
-        $.ajax({
-            url:"/manage/Index/getUserData",
-            type:"post",
-            dataType:"json",
-            success:function(res){
-                if(res.code == 1){
-                    initEditData(res.value);
-                }else{
-                    alert(res.msg);
-                }
-            }
-        });
-
         $('#personalRes').modal({
             show:true,
             backdrop:'static'
         });
-
-        $("#personalRes").modal('show').css({
-            width: 'auto'
-        });
-    }
-
-    //编辑资料时初始化值
-    function initEditData(c){
-        $("#user_id").val(c.userid);
     }
 
     // 新增或修改提交
     function submit(){
-        var user_code = $("#user_code").val();
-        if (user_code == '') {
-            alert('登录名不能为空');
-            $("#user_code").focus();
-        } else{
-            // 开始提交
-            $.ajax({
-                url:"/manage/Index/editSubmit",
-                type:"POST",
-                dataType:"json",
-                data:$("#user_basic_form").serialize(),
-                success:function(response){
-                    if(response.code == -1){
-                        alert(response.msg);
-                    }else{
-                        alert('操作成功');
-                        $("#personalRes").modal('hide');
-                    }
-                }
-            });
-        }
+        $("#user_basic_form").submit();
     }
 
 

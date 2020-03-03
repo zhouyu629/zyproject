@@ -60,4 +60,9 @@ public class ArticleService {
             return ResponseData.out(CodeEnum.FAIL,e.getMessage());
         }
     }
+
+    //删除文章
+    public ResponseData delArticle(Integer article_id){
+        return  this.systemFeign.delArticle(article_id);
+    }
 }

@@ -18,7 +18,7 @@ import java.util.List;
 
 /**
  * @program: zyproject
- * @description: 实现SpringSecrity UserDetailService接口
+ * @description: 实现SpringSecurity UserDetailService接口
  * @author: zhouyu(zhouyu629 # qq.com)
  * @create: 2020-02-12
  **/

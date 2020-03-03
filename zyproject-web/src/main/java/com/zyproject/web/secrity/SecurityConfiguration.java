@@ -10,7 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
  * @program: zyproject
- * @description: SpringSercrity配置
+ * @description: SpringSercurity配置
  * @author: zhouyu(zhouyu629 # qq.com)
  * @create: 2020-02-12
  **/
@@ -62,6 +62,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .passwordParameter("password")
                 //必须允许所有用户访问我们的登录页（例如未验证的用户，否则验证流程就会进入死循环）
                 .permitAll()
+                .and()
+                .logout()
+                    .logoutUrl("/manage/logout")
+                    //.logoutSuccessHandler() //退出登录要做的操作，如记录日志等。或者直接设置logoutsuccessurl也行
+                    .logoutSuccessUrl("/manage/login") //简单点吧
+                    .deleteCookies("JSESSIONID")
                 .and()
                 .sessionManagement()
                 .invalidSessionUrl("/manage/error?key=timeout");

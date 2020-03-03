@@ -113,4 +113,10 @@ public class ArticleDao {
                     articleEntity.getArticle_content(),new Date())>0;
         }
     }
+
+    //删除文章
+    public boolean delArticle(Integer article_id){
+        String sql = "DELETE FROM tb_article WHERE article_id=?";
+        return this.jdbcTemplate.update(sql,article_id)>0;
+    }
 }
