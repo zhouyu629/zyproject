@@ -1,4 +1,4 @@
-package com.zyproject.web.secrity;
+package com.zyproject.web.security;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

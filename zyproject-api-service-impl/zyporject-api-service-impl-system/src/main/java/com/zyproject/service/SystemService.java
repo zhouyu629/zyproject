@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -26,6 +27,7 @@ import java.util.Map;
  * @create: 2020-02-15
  **/
 @RestController
+@RequestMapping("/api")
 @Api(value = "SystemService",description ="系统管理接口相关")
 public class SystemService implements ISystemService {
 

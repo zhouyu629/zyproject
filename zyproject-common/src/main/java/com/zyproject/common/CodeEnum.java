@@ -24,6 +24,9 @@ public enum CodeEnum {
     USERNAMEISNULL(1017,"用户姓名不能为空"),
     USERPASSWORDISNULL(1018,"用户密码不能为空"),
     ROLENAMEISNULL(1019,"角色名称不能为空"),
+
+    UNAUTHORIZED(5000,"用户认证失败，用户未登录"),
+    UNAUTHORIZEDUSERNAMEORPASSWORDINVALID(5001,"用户认证失败，错误的用户名或密码")
     ;
 
 

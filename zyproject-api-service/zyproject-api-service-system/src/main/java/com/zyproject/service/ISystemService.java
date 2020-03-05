@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 public interface ISystemService {
-
     /**
      *
      *  用户相关
@@ -18,34 +17,34 @@ public interface ISystemService {
      */
 
     //用户登录方法
-    @RequestMapping("/userLogin")
+    @RequestMapping("/api/userLogin")
     public ResponseData userLogin(@RequestParam String user_code, @RequestParam String password);
     //根据用户名，查找用户信息，为SpringSercrity等业务提供服务
-    @RequestMapping("/findByLoginname")
+    @RequestMapping("/api/findByLoginname")
     public ResponseData findByLoginname(@RequestParam String login_name);
     //用户列表，可以加user_name,login_code,del_flag等过滤条件
-    @RequestMapping("/getUserList")
+    @RequestMapping("/api/getUserList")
     public ResponseData getUserList(@RequestParam(name = "page",defaultValue = "1") int page,
                                     @RequestParam(name = "pagesize",defaultValue = "10") int pagesize,
                                     @RequestParam(required = false) String user_name,
                                     @RequestParam(required = false) String login_code,
                                     @RequestParam(required = false) Integer del_flag);
-    @RequestMapping("/getUserByUserId")
+    @RequestMapping("/api/getUserByUserId")
     public ResponseData getUserByUserId(@RequestParam(name = "user_id") int user_id);
 
     //新增或修改用户
-    @RequestMapping("/addOrUpdateUser")
+    @RequestMapping("/api/addOrUpdateUser")
     public ResponseData addOrUpdateUser(@RequestParam(name = "userStr") String userStr);
 
     //删除用户(假删除）
-    @RequestMapping("/deluser")
+    @RequestMapping("/api/deluser")
     public ResponseData deluser(@RequestParam(name = "user_id") int user_id);
 
     //根据用户id查询用户已分配角色和未分配角色列表
-    @RequestMapping("/getuserroleinfo")
+    @RequestMapping("/api/getuserroleinfo")
     public ResponseData getuserroleinfo(@RequestParam(name = "user_id") int user_id);
 
-    @RequestMapping("/userroleSubmit")
+    @RequestMapping("/api/userroleSubmit")
     public ResponseData userroleSubmit(@RequestParam(name = "user_id") Integer user_id,@RequestParam(name = "roleids",defaultValue = "",required = false) String roleids);
 
 
@@ -57,40 +56,40 @@ public interface ISystemService {
 
 
     //获取所有菜单列表，含有删除未删除的
-    @RequestMapping("/getAllTreeList")
+    @RequestMapping("/api/getAllTreeList")
     public List<TreeEntity> getAllTreeList();
     //查找所有的树及按钮，含当前用户是否有权限
-    @RequestMapping("/getAllTreeWithUserRight")
+    @RequestMapping("/api/getAllTreeWithUserRight")
     public ResponseData  getAllTreeWithUserRight(@RequestParam int user_id);
     //查找所有的树及按钮，含当前用户是否有权限
-    @RequestMapping("/getAllTreeWithRoleRight")
+    @RequestMapping("/api/getAllTreeWithRoleRight")
     public ResponseData  getAllTreeWithRoleRight(@RequestParam int role_id);
     //根据用户获取有权限的组织机构树
-    @RequestMapping("/getTreeWithUserRight")
+    @RequestMapping("/api/getTreeWithUserRight")
     public ResponseData getTreeWithUserRight(@RequestParam int user_id);
     //根据tree_id获取菜单实体
-    @RequestMapping("/getTreeByTreeId")
+    @RequestMapping("/api/getTreeByTreeId")
     public ResponseData getTreeByTreeId(@RequestParam int tree_id);
     //分页获取角色列表（状态正常）
-    @RequestMapping("/getRoleByPage")
+    @RequestMapping("/api/getRoleByPage")
     public ResponseData getRoleByPage(@RequestParam(defaultValue = "1") int page,@RequestParam(defaultValue = "10") int pagesize);
     //根据role_id获取role
-    @RequestMapping("/getRoleByRoleid")
+    @RequestMapping("/api/getRoleByRoleid")
     public ResponseData getRoleByRoleid(@RequestParam int role_id);
     //根据用户获取当前用户所有权限按钮
-    @RequestMapping("/getRoleTreefuncByUserid")
+    @RequestMapping("/api/getRoleTreefuncByUserid")
     public ResponseData getRoleTreefuncByUserid(@RequestParam  int user_id);
     //设置角色权限
-    @PostMapping("/setRoleRight")
+    @PostMapping("/api/setRoleRight")
     public ResponseData setRoleRight(@RequestParam int role_id,
                                      @RequestParam(name = "tree_ids",required = true) String  tree_ids,
                                      @RequestParam(name = "btn_ids",required = true) String btn_ids);
     //新增或更新role
-    @GetMapping("/addOrUpdateRole")
+    @GetMapping("/api/api/addOrUpdateRole")
     public ResponseData addOrUpdateRole(@RequestParam String role);
 
     //删除角色
-    @GetMapping("/delrole")
+    @GetMapping("/api/api/delrole")
     public ResponseData delrole(@RequestParam Integer role_id);
 
     /**
@@ -100,30 +99,30 @@ public interface ISystemService {
      */
 
     //获取文章分类列表，一二级分类一起拿到前台。不分页。
-    @GetMapping("/getArticleKindList")
+    @GetMapping("/api/getArticleKindList")
     public ResponseData getArticleKindList();
     //根据分类id获取分类详情
-    @GetMapping("/getArticleKindByKindId")
+    @GetMapping("/api/getArticleKindByKindId")
     public ResponseData getArticleKindByKindId(@RequestParam(name = "kind_id") int kind_id);
     //新增或修改文章分类提交
-    @GetMapping("/addOrUpdateArticleKind")
+    @GetMapping("/api/addOrUpdateArticleKind")
     public ResponseData addOrUpdateArticleKind(@RequestParam String article_kind_str);
     //删除文章分类
-    @GetMapping("/delArticleKind")
+    @GetMapping("/api/delArticleKind")
     public ResponseData delArticleKind(@RequestParam int kind_id);
     //分页获取文章列表，可以带搜索条件
-    @GetMapping("/getArticlePage")
+    @GetMapping("/api/getArticlePage")
     public ResponseData getArticlePage(@RequestParam(defaultValue = "1") int page,
                                        @RequestParam(defaultValue = "10") int pagesize,
                                        @RequestParam(required = false) String keywords,
                                        @RequestParam(required = false) Integer kind_id);
     //根据文章ID获取文章详情
-    @GetMapping("/getArticleById")
+    @GetMapping("/api/getArticleById")
     public ResponseData getArticleById(@RequestParam int article_id);
     //新增或修改文章提交
-    @GetMapping("/addOrUpdateArticle")
+    @GetMapping("/api/addOrUpdateArticle")
     public ResponseData addOrUpdateArticle(@RequestParam String article_str);
-    @GetMapping("/delArticle")
+    @GetMapping("/api/delArticle")
     //删除文章
     public ResponseData delArticle(@RequestParam Integer article_id);
 

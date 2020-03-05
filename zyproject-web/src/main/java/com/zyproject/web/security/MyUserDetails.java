@@ -1,4 +1,4 @@
-package com.zyproject.web.secrity;
+package com.zyproject.web.security;
 
 import com.zyproject.entity.RoleTreefuncEntity;
 import com.zyproject.entity.UserEntity;

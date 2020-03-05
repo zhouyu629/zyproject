@@ -1,8 +1,7 @@
 package com.zyproject.web.freemarker;
 
 import com.zyproject.entity.RoleTreefuncEntity;
-import com.zyproject.entity.UserEntity;
-import com.zyproject.web.secrity.MyUserDetails;
+import com.zyproject.web.security.MyUserDetails;
 import freemarker.core.Environment;
 import freemarker.template.TemplateDirectiveBody;
 import freemarker.template.TemplateDirectiveModel;

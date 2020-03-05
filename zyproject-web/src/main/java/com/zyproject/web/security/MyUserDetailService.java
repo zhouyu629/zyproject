@@ -1,4 +1,4 @@
-package com.zyproject.web.secrity;
+package com.zyproject.web.security;
 
 import com.google.gson.Gson;
 import com.zyproject.common.CodeEnum;

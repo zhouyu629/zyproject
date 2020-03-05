@@ -1,4 +1,4 @@
-package com.zyproject.web.secrity;
+package com.zyproject.web.security;
 
 import java.security.MessageDigest;
 

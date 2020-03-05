@@ -1,4 +1,4 @@
-package com.zyproject.web.secrity;
+package com.zyproject.web.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -47,7 +47,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         httpSecurity.headers().frameOptions().disable();
         httpSecurity
                 .authorizeRequests()
-                .antMatchers("/manage/error","/manage/404","/manage/login/**","/manage/login-submit","/manage/images/**","/manage/js/**","/manage/css/**","/manage/fonts/**").permitAll()
+                .antMatchers("/manage/error","/manage/404","/manage/login/**","/manage/login-submit",
+                        "/manage/images/**","/manage/js/**","/manage/css/**","/manage/fonts/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

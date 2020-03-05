@@ -3,7 +3,7 @@ package com.zyproject.web.manage;
 import com.zyproject.common.CodeEnum;
 import com.zyproject.common.ResponseData;
 import com.zyproject.common.echarts.*;
-import com.zyproject.web.secrity.MyUserDetails;
+import com.zyproject.web.security.MyUserDetails;
 import com.zyproject.web.service.TreeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

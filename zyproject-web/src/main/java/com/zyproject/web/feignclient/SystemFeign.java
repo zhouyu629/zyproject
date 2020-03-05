@@ -9,7 +9,7 @@ import org.springframework.cloud.openfeign.FeignClient;
  * @author: zhouyu(zhouyu629 @ qq.com)
  * @create: 2020-02-11
  **/
-@FeignClient("zyproject-api-service-system")
+@FeignClient(name ="zyproject-api-service-system",contextId = "system",configuration = {FeignInterceptor.class})
 public interface SystemFeign extends ISystemService {
 
 }
