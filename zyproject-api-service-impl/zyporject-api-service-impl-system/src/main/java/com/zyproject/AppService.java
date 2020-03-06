@@ -17,7 +17,7 @@ public class AppService {
         SpringApplication.run(AppService.class,args);
     }
 
-    //¹ýÂËÆ÷
+    //è¿‡æ»¤å™¨
     @Bean
     public FilterRegistrationBean erroFilter(){
         FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();

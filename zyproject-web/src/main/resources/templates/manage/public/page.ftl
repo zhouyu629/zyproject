@@ -1,60 +1,57 @@
 <#macro fpage page pagesize totalpages totalrecords url>
     <li><span>共条${totalrecords}记录&nbsp;&nbsp;第${page}页/共${totalpages}页</span></li>
-    <#--如果当前不是第一页，则展示前5页-->
+
+    <#--startpage:起始页码就是page，endpage:结束页码，showfirstpage是否显示首页按钮，showlastpage：是否显示末页按钮，showpre是否显示前...，shownext是否显示后...-->
+    <#assign startpage = page,endpage=10,showfirstpage=false,showlastpage=false,showpre=false,shownext=false,prepage = 1,nextpage=11>
+    <#--是否显示首页按钮及计算初始页码-->
     <#if page gt 1>
-        <li><span><a href="${url}&page=1">首页</a></span></li>
-        <#--至于是前x页？-->
-        <#if page gt 5>
-            <#assign prepage = page-5 >
-        <#else>
-            <#assign prepage=1>
+        <#assign showfirstpage = true>
+        <#--startpage向前挪4页，如果不足4页，则startpage=1-->
+        <#assign startpage=(page-4)>
+        <#if startpage lte 0>
+            <#assign startpage = 1>
         </#if>
-        <#--是否显示...-->
-        <#if prepage gt 1>
-            <li><span><a href="${url}&page=${page-6}">...</a></span></li>
-        </#if>
-        <#list prepage ..page-1 as p>
-            <li><span><a href="${url}&page=${p}">${p}</a></span></li>
-        </#list>
-        <#--当前页-->
-        <li class="active"><span><a href="${url}&page=${page}">${page}</a></span></li>
-        <#--后10-page页-->
-        <#if page lt totalpages>
-            <#if totalpages lte 10>
-                <#list page+1..totalpages as p>
-                    <li><span><a href="${url}&page=${p}">${p}</a></span></li>
-                </#list>
-            <#else>
-                <#--如果后面的页数超过5页-->
-                <#if totalpages-page gt 5>
-                    <#list page+1..page+5 as p>
-                        <li><span><a href="${url}&page=${p}">${p}</a></span></li>
-                    </#list>
-                    <li><span><a href="${url}&page=${page+6}">...</a></span></li>
-                <#else>
-                    <#list page+1..totalpages as p>
-                        <li><span><a href="${url}&page=${p}">${p}</a></span></li>
-                    </#list>
-                </#if>
-            </#if>
-            <#--显示尾页-->
-            <li><span><a href="${url}&page=${totalpages}">尾页</a></span></li>
-        </#if>
+    </#if>
+    <#--是否显示前n页的...，以及...的链接-->
+    <#if page gt 5>
+        <#assign showpre = true,prepage=page-5>
+    </#if>
+    <#--计算endpage-->
+    <#if page+pagesize-1 lt totalpages>
+        <#assign endpage = page+pagesize-1>
+        <#--显示后面的...按钮-->
+        <#assign shownext = true>
+        <#--后面...的页面码-->
+        <#assign nextpage=page+pagesize>
+        <#--显示末页-->
+        <#assign showlastpage = true>
     <#else>
-        <#--如果总页数大于10页，只显示前十页，后面用...代替-->
-        <#if totalpages gt 10>
-            <#list 1..10 as p>
-                <li <#if p==1>class="active"</#if>><span><a href="${url}&page=${p}">${p}</a></span></li>
-            </#list>
-            <li><span><a href="${url}&page=${page+10}">...</a></span></li>
-        <#else>
-            <#list 1..totalpages as p>
-                <li <#if p==1>class="active"</#if>><span><a href="${url}&page=${p}">${p}</a></span></li>
-            </#list>
-        </#if>
-        <#--是否显示尾页-->
-        <#if totalpages gt 1>
-            <li><span><a href="${url}&page=${totalpages}">尾页</a></span></li>
-        </#if>
+        <#assign endpage = totalpages>
+    </#if>
+    <#if endpage lte 0>
+        <#assign endpage = 1>
+    </#if>
+
+    <#--开始展示-->
+
+    <#--首页-->
+    <#if showfirstpage>
+        <li><span><a href="${url}&page=1">首页</a></span></li>
+    </#if>
+    <#--前面的...-->
+    <#if showpre>
+        <li><span><a href="${url}&page=${prepage}">...</a></span></li>
+    </#if>
+    <#--显示的页码按钮-->
+    <#list startpage..endpage as p>
+        <li  <#if p == page>class="active"</#if>><span><a href="${url}&page=${p}">${p}</a></span></li>
+    </#list>
+    <#--后面的...-->
+    <#if shownext>
+        <li><span><a href="${url}&page=${nextpage}">...</a></span></li>
+    </#if>
+    <#--显示尾页-->
+    <#if showlastpage>
+        <li><span><a href="${url}&page=${totalpages}">末页</a></span></li>
     </#if>
 </#macro>
